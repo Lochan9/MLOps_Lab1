@@ -1,0 +1,33 @@
+﻿name: Testing with Pytest
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Pytest
+        run: pytest -v --junitxml=pytest-report.xml
+
+      - name: Run Pipeline Validator
+        run: python src/validate_pipeline.py
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pytest-results
+          path: pytest-report.xml

@@ -1,0 +1,20 @@
+﻿# Ignore Python virtual environment
+.venv/
+
+# Ignore cache, logs, and temp files
+__pycache__/
+*.pyc
+*.pyo
+*.log
+
+# Ignore IDE and temporary settings
+.vscode/
+.idea/
+
+# Ignore test cache
+.pytest_cache/
+
+# Ignore data folders
+data/raw/
+data/processed/
+data/results/
