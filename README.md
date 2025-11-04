@@ -3,7 +3,17 @@
 
 This repository implements a **complete testing and CI/CD pipeline** that combines both `unittest` and `pytest` frameworks — ensuring full validation, modularity, and reproducibility.  
 Unlike a simple one-script submission, this lab mirrors **real-world MLOps practices** with structured automation, GitHub Actions integration, and clean code versioning.
+How This Implementation Is Different
 
+Adds data validation (validate_pipeline.py) — not required in the base lab.
+
+Uses both testing frameworks simultaneously, ensuring redundancy and cross-checking.
+
+Incorporates multi-version Python testing, validating portability.
+
+Includes loguru-based logging, mimicking real MLOps pipelines.
+
+Provides a professional README with CI/CD documentation and reproducible setup.
 ---
 
 ## 🚀 Key Highlights
