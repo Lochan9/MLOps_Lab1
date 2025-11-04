@@ -1,58 +1,78 @@
-﻿LAB 1 – MLOps (IE-7374)
+﻿# 🧪 MLOps Lab 1 – Testing & CI/CD Automation
 
-This lab focuses on setting up a Python project with virtual environments, source code, testing frameworks, and CI/CD integration using GitHub Actions.
+**Course:** IE-7374 – Machine Learning Operations (MLOps)  
+**Student:** Lochan Enugula  
+**University:** Northeastern University (Boston)  
 
-------------------------------------------------------------
-Steps Covered
-------------------------------------------------------------
+---
 
-1. Virtual Environment
-   - Created using: python -m venv .venv
-   - Activated and verified dependencies with: pip list
+## 📘 Overview
+This lab demonstrates key MLOps principles through a complete testing and automation pipeline.  
+It includes:  
+- Virtual environment setup and structured folders  
+- Core modules (`calculator.py`, `validate_pipeline.py`)  
+- Tests with **Pytest** and **Unittest**  
+- CI/CD via **GitHub Actions**  
+- Multi-version build matrix (Python 3.10 → 3.12)
 
-2. GitHub Repository
-   - Initialized with: git init
-   - Folder structure:
-        src/        → Source code
-        test/       → Test files
-        data/       → Data (if required)
-   - Added .gitignore to exclude venv and cache files
+---
 
-3. Code Development
-   - File: src/calculator.py
-        fun1() → addition
-        fun2() → subtraction
-        fun3() → multiplication
-        fun4() → combined operation
+## 🗂️ Project Structure
+MLOps_Lab1/
+│
+├── src/
+│   ├── calculator.py
+│   └── validate_pipeline.py
+│
+├── test/
+│   ├── test_pytest.py
+│   └── test_unittest.py
+│
+├── .github/workflows/
+│   ├── pytest_action.yml
+│   └── unittest_action.yml
+│
+├── data/results.csv
+├── requirements.txt
+└── README.md
 
-4. Testing
-   - Pytest: test/test_pytest.py
-   - Unittest: test/test_unittest.py
-   - Commands:
-        pytest -v
-        python -m unittest discover -s test -p "test_*.py" -v
+---
 
-5. CI/CD Setup
-   - Workflows added under .github/workflows/
-        pytest_action.yml
-        unittest_action.yml
-   - Runs automatically on every push to main
-   - Verifies tests and prints pass/fail status
+## ⚙️ Setup & Execution
+git clone https://github.com/Lochan9/MLOps_Lab1.git
+cd MLOps_Lab1
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
 
-------------------------------------------------------------
-Tools Used
-------------------------------------------------------------
+Run tests:
+python -m pytest -v
+python -m unittest discover -s test -p "test_*.py" -v
 
-Python 3.12
-Pytest
-Unittest
-GitHub Actions
-Loguru (for logging)
+Expected output:
+7 passed in 0.2 s
+OK
 
-------------------------------------------------------------
-Result
-------------------------------------------------------------
+---
 
-✅ All tests passed locally and in GitHub Actions  
-✅ Clean repo structure ready for grading  
-✅ Includes both Pytest and Unittest CI workflows
+## 🤖 CI/CD Summary
+- `pytest_action.yml` → runs Pytest on Python 3.10 / 3.11 / 3.12  
+- `unittest_action.yml` → runs Unittest on Python 3.12  
+- Triggered automatically on push or pull request to `main`
+
+---
+
+## ✅ Verification
+| Check | Status | Details |
+|-------|--------|----------|
+| Local Pytest | ✅ Passed | 3 parameterized tests successful |
+| Local Unittest | ✅ Passed | 4 class-based tests successful |
+| GitHub Actions (Pytest) | ✅ Passed | Multi-version matrix OK |
+| GitHub Actions (Unittest) | ✅ Passed | CI pipeline OK |
+
+---
+
+### 💬 Author
+**Lochan Enugula**  
+📧 enugula.l@northeastern.edu  
+🔗 [GitHub: Lochan9](https://github.com/Lochan9)
