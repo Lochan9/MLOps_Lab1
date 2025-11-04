@@ -1,67 +1,57 @@
 @'
 # 🧠 MLOps Lab 1 – Automated Testing & Continuous Integration Pipeline
 
-This repository implements a **complete testing and CI/CD pipeline** that combines both `unittest` and `pytest` frameworks — ensuring full validation, modularity, and reproducibility.  
-Unlike a simple one-script submission, this lab mirrors **real-world MLOps practices** with structured automation, GitHub Actions integration, and clean code versioning.
+This repository showcases a **fully automated testing and CI/CD pipeline** integrating both `unittest` and `pytest` frameworks.  
+It mirrors **real-world MLOps practices** by combining structured project organization, logging, validation, and continuous integration via GitHub Actions.
 
-
-How This Implementation Is Different
-
-Adds data validation (validate_pipeline.py) — not required in the base lab.
-
-Uses both testing frameworks simultaneously, ensuring redundancy and cross-checking.
-
-Incorporates multi-version Python testing, validating portability.
-
-Includes loguru-based logging, mimicking real MLOps pipelines.
-
-Provides a professional README with CI/CD documentation and reproducible setup.
 ---
 
 ## 🚀 Key Highlights
 
 | Feature | Description |
-|----------|--------------|
-| 🧩 **Dual Testing Frameworks** | Uses both `unittest` (for functional tests) and `pytest` (for parameterized, expressive tests). |
-| ⚙️ **Automated CI/CD Pipeline** | GitHub Actions automatically runs both frameworks on each push or pull request. |
-| 🧱 **Structured Project Layout** | Organized `src/` and `test/` directories follow industry-standard MLOps design. |
-| 🔁 **Reproducible Setup** | `requirements.txt` ensures identical environments across local and cloud runs. |
-| 🧮 **Validation Pipeline** | Custom `validate_pipeline.py` script performs result integrity checks and logs statistics. |
-| 🧰 **Cross-Version Testing** | Verified on Python 3.10 → 3.12 for compatibility and future-proofing. |
+|----------|-------------|
+| 🧩 **Dual Testing Frameworks** | Implements both `unittest` (for deterministic tests) and `pytest` (for parameterized validation). |
+| ⚙️ **Automated CI/CD Pipeline** | GitHub Actions automatically runs both frameworks on each push or pull request to `main`. |
+| 🧱 **Structured Repository Design** | Clean separation of source (`src/`), tests (`test/`), and automation (`.github/workflows/`). |
+| 🧮 **Validation Layer** | Includes a `validate_pipeline.py` that verifies results and logs status with timestamps. |
+| 🔁 **Reproducible Setup** | `requirements.txt` ensures deterministic environment setup. |
+| 🧰 **Cross-Version Compatibility** | CI validated on Python 3.10, 3.11, and 3.12. |
+| 📈 **End-to-End MLOps Workflow** | Combines local testing, CI validation, and result tracking under a single repository. |
 
 ---
 
 ## 🧩 Project Structure
-MLOps_Lab1/
+
+MLOps_Lab1/  
 │── src/  
-│   ├── calculator.py                 → core computation logic  
-│   ├── validate_pipeline.py          → verifies and logs computed results  
+│   ├── calculator.py                 → Core computation logic (add, subtract, multiply, aggregate)  
+│   ├── validate_pipeline.py          → Logs, validates, and ensures data integrity  
 │── test/  
-│   ├── test_pytest.py                → parameterized tests using pytest  
-│   ├── test_unittest.py              → functional tests using unittest  
+│   ├── test_pytest.py                → Parameterized tests using pytest  
+│   ├── test_unittest.py              → Functional tests using unittest  
 │── .github/workflows/  
-│   ├── pytest_action.yml             → CI workflow for pytest validation  
+│   ├── pytest_action.yml             → CI workflow for pytest (multi-Python matrix)  
 │   ├── unittest_action.yml           → CI workflow for unittest validation  
-│── data/results.csv                  → sample output data  
-│── requirements.txt                  → dependency file  
-│── README.md                         → documentation  
+│── data/results.csv                  → Sample generated outputs  
+│── requirements.txt                  → Dependency list  
+│── README.md                         → Documentation file  
 
 ---
 
 ## ⚙️ Setup & Local Execution
 
 ```bash
-# Clone repository
+# Clone the repository
 git clone https://github.com/Lochan9/MLOps_Lab1.git
 cd MLOps_Lab1
 
-# Create and activate environment
+# Create and activate virtual environment
 python -m venv .venv
 .venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run all tests
+# Run all local tests
 python -m pytest -v
 python -m unittest discover -s test -p "test_*.py" -v
