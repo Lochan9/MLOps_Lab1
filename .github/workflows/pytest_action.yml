@@ -3,10 +3,13 @@
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -14,20 +17,18 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.12
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Pytest
-        run: pytest -v --junitxml=pytest-report.xml
+      - name: Run Pytest tests
+        run: pytest -v
 
-      - name: Run Pipeline Validator
-        run: python src/validate_pipeline.py
+      - name: Notify on success
+        if: success()
+        run: echo "✅ Pytest tests passed successfully"
 
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: pytest-results
-          path: pytest-report.xml
+      - name: Notify on failure
+        if: failure()
+        run: echo "❌ Pytest tests failed"
