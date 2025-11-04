@@ -72,7 +72,4 @@ OK
 
 ---
 
-### 💬 Author
-**Lochan Enugula**  
-📧 enugula.l@northeastern.edu  
-🔗 [GitHub: Lochan9](https://github.com/Lochan9)
+
