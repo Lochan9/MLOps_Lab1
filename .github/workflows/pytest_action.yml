@@ -1,4 +1,4 @@
-﻿name: Testing with Pytest
+﻿name: Testing with Pytest (Multi-Version)
 
 on:
   push:
@@ -9,15 +9,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.10", "3.11", "3.12" ]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: 3.12
+          python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -27,8 +30,8 @@ jobs:
 
       - name: Notify on success
         if: success()
-        run: echo "✅ Pytest tests passed successfully"
+        run: echo "✅ Pytest passed on Python ${{ matrix.python-version }}"
 
       - name: Notify on failure
         if: failure()
-        run: echo "❌ Pytest tests failed"
+        run: echo "❌ Pytest failed on Python ${{ matrix.python-version }}"
